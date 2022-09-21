@@ -15,13 +15,17 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { TaskComponent } from './components/task/task.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    TaskComponent,
+    UserSearchComponent
   ],
   imports: [
     BrowserModule,

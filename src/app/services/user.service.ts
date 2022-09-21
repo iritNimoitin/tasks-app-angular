@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, tap,throwError  } from 'rxjs';
 import { IUser } from '../models/user.interface';
@@ -35,14 +35,13 @@ export class UserService {
   }
 
 
-
   /** GET users from the server */
   getUsers(): Observable<IUser[]> {
     const i = this.http.get<IUser[]>(this.usersUrl);
     //i.subscribe(val => console.log(val));
     return this.http.get<IUser[]>(this.usersUrl)
       .pipe(
-        tap(_ => this.log('getting heroes')),
+        tap(_ => this.log('getting users')),
         catchError(this.handleError('getUsers', []))
       );
   }

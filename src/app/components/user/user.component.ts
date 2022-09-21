@@ -12,6 +12,9 @@ import { UserService } from 'src/app/services/user.service';
 export class UserComponent implements OnInit {
 
   public users :IUser[] = [];
+  editUser: IUser | undefined;
+ 
+  public isOtherData:boolean = false;
 
   constructor(private userService:UserService) { }
 
@@ -33,5 +36,4 @@ export class UserComponent implements OnInit {
     this.userService.deleteHero(user.id);
    
   }
-
 }
