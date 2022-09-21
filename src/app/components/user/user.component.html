@@ -1,0 +1,28 @@
+<!-- 
+<ul class="users">
+    <li *ngFor="let user of users">
+    <span class="badge">{{user.id}}</span> {{user.name}}
+    </li>
+   </ul> -->
+
+   
+    <div *ngFor="let user of users; let i = index">
+        <mat-card class="outline">
+            <mat-card-title>ID:{{user.id}}</mat-card-title>
+            <mat-card-subtitle>Name:{{user.name}}</mat-card-subtitle>
+            <mat-card-subtitle>Email:{{user.email}}</mat-card-subtitle>
+            <mat-card-actions >
+              <button mat-raised-button color="primary">Update</button>
+              <button mat-raised-button color="warn" (click)="delete(user)">Delete</button>
+              <span class="example-spacer">
+                <button mat-raised-button color="accent">Other Data</button>
+              </span>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+
+
+
+  
+
+
