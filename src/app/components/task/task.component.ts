@@ -11,6 +11,8 @@ export class TaskComponent implements OnInit {
 
   public tasks :ITask[] = [];
 
+  public selectedUser:number;
+
   constructor(private taskService:TaskService) { }
 
   
@@ -21,6 +23,10 @@ export class TaskComponent implements OnInit {
   getAllTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => (this.tasks = tasks));
+  }
+
+  getSelectedUser():void {
+    this.taskService.getSelectedUser().subscribe(userid => (this.selectedUser = userid));
   }
 
 }

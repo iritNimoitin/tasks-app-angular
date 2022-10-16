@@ -1,9 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap } from 'rxjs';
+import { catchError, Observable, tap ,of} from 'rxjs';
 import { ITask } from '../models/task.interface';
 import { HandleError, HttpErrorHandler } from './http-error-handler.service';
 import { MessageService } from './massage.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,8 @@ import { MessageService } from './massage.service';
 export class TaskService {
 
   private tasksUrl = 'https://jsonplaceholder.typicode.com/todos';
+
+  public selectedUser:number;
 
   private handleError: HandleError;
 
@@ -26,12 +29,12 @@ export class TaskService {
   }
 
   
-private log(message: string) {
-  this.messageService.add(`UserService: ${message}`);
- }
+  private log(message: string) {
+    this.messageService.add(`UserService: ${message}`);
+  }
 
    /** GET users's tasks from the server */
-   getTasks(): Observable<ITask[]> {
+  getTasks(): Observable<ITask[]> {
     const i = this.http.get<ITask[]>(this.tasksUrl);
     //i.subscribe(val => console.log(val));
     return this.http.get<ITask[]>(this.tasksUrl)
@@ -39,5 +42,23 @@ private log(message: string) {
         tap(_ => this.log('getting tasks')),
         catchError(this.handleError('getTasks', []))
       );
+  }
+
+    
+  getUserTasksByUserId(userId: number): Observable<unknown> {
+    const url = `${this.tasksUrl}/${userId}`;
+    return this.http.get(url, this.httpOptions)
+      .pipe(
+        catchError(this.handleError('deleteHero'))
+      );
+  }
+
+  setSelectedUser(userid: number):void{
+    this.selectedUser = userid;
+    console.log(userid);
+  }
+
+  getSelectedUser():Observable<number>{
+    return of(this.selectedUser);
   }
 }

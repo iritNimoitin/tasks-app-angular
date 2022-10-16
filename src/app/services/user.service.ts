@@ -47,7 +47,7 @@ export class UserService {
   }
 
   /** DELETE: delete the user from the server */
-  deleteHero(id: number): Observable<unknown> {
+  deleteUser(id: number): Observable<unknown> {
     const url = `${this.usersUrl}/${id}`; 
     return this.http.delete(url, this.httpOptions)
       .pipe(
